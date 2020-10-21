@@ -1,0 +1,12 @@
+{
+  "name": "recipediary",
+  "displayName": "recipediary",
+  "expo": {
+    "name": "recipediary",
+    "slug": "recipediary",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
