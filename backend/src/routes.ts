@@ -6,7 +6,6 @@ const router = express.Router();
 router.post("/recipes", (req, res) => {
   // TODO: Validate
   const recipe = req.body as Recipe;
-
   const database = new Database();
 
   try {

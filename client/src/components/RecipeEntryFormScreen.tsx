@@ -3,19 +3,24 @@ import { StackScreenProps } from "@react-navigation/stack";
 import React, { useState } from "react";
 import { View, Text, TextInput } from "react-native";
 import { Button } from "react-native-elements";
-import { Recipe } from "../../../backend/src/database";
 import addRecipe from "../api";
 
 interface Props extends StackScreenProps<{}> {}
 
 export default function RecipeEntryFormScreen({ navigation }: Props) {
-  async function onComplete(recipe: Recipe) {
-    await addRecipe(recipe);
+  const [title, setTitle] = useState("");
+  const [method, setMethod] = useState("");
+  const [ingredients, setIngredients] = useState("");
+
+  async function onComplete() {
+    await addRecipe({
+      title,
+      method,
+      ingredients,
+    });
     // Assume it completed correctly
     navigation.goBack();
   }
-
-  const [text, setText] = useState("");
 
   return (
     <View>
@@ -23,20 +28,20 @@ export default function RecipeEntryFormScreen({ navigation }: Props) {
       <TextInput
         style={{ height: 40 }}
         placeholder="Title"
-        onChangeText={() => setText(text)}
-        defaultValue={text}
+        onChangeText={() => setTitle(title)}
+        defaultValue={title}
       />
       <TextInput
         style={{ height: 40 }}
         placeholder="Method"
-        onChangeText={() => setText(text)}
-        defaultValue={text}
+        onChangeText={() => setMethod(method)}
+        defaultValue={method}
       />
       <TextInput
         style={{ height: 40 }}
         placeholder="Ingredients"
-        onChangeText={() => setText(text)}
-        defaultValue={text}
+        onChangeText={() => setIngredients(ingredients)}
+        defaultValue={ingredients}
       />
       <Button title="Add entry" onPress={onComplete} />
     </View>

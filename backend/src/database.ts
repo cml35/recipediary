@@ -6,7 +6,7 @@ const client = new Client({
   host: "localhost",
   database: "recipediary",
   password: "abc123",
-  port: 3211,
+  port: 5432,
 });
 client.connect();
 
@@ -22,12 +22,8 @@ export default class Database {
   }
 
   public add(recipe: Recipe) {
-    let title = "";
-    let method = "";
-    let ingredients = "";
-
     client.query(
-      `INSERT INTO recipe (recipe_title, recipe_method, recipe_ingredients) VALUES(${title}, ${method}, ${ingredients})`
+      `INSERT INTO recipe (recipe_title, recipe_method, recipe_ingredients) VALUES(${recipe.title}, ${recipe.method}, ${recipe.ingredients})`
     );
   }
 

@@ -4,7 +4,6 @@ import { Button } from "react-native-elements";
 
 interface Props {
   navigation: any;
-  route: any;
 }
 
 const HomeScreen = (props: Props) => {
